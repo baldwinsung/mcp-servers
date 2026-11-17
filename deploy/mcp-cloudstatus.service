@@ -1,0 +1,30 @@
+[Unit]
+Description=Cloud app/provider outage status MCP backend (loopback only, behind mcp-gateway)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+DynamicUser=yes
+Environment=MCP_LISTEN_ADDR=127.0.0.1:9103
+Environment=MCP_PUBLIC=1
+
+ExecStart=/usr/local/bin/mcp-cloudstatus
+Restart=always
+RestartSec=2
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+RestrictAddressFamilies=AF_INET AF_UNIX
+RestrictNamespaces=yes
+LockPersonality=yes
+MemoryDenyWriteExecute=yes
+SystemCallArchitectures=native
+MemoryMax=128M
+
+[Install]
+WantedBy=multi-user.target
