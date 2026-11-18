@@ -8,6 +8,7 @@ tokens and rate limits.
 
 **New here? See [GETTING_STARTED.md](GETTING_STARTED.md)** for copy-and-paste
 setup: the hosted servers in Claude, or building and running your own.
+**[SOURCES.md](SOURCES.md)** lists every data source each server uses.
 
 | Path | Binary | Port | Tools | Sources |
 |---|---|---|---|---|
