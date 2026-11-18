@@ -6,6 +6,9 @@ dependencies outside the standard library. It speaks MCP Streamable HTTP on
 loopback, with a separate gateway in front handling TLS, the free call allowance,
 tokens and rate limits.
 
+**New here? See [GETTING_STARTED.md](GETTING_STARTED.md)** for copy-and-paste
+setup: the hosted servers in Claude, or building and running your own.
+
 | Path | Binary | Port | Tools | Sources |
 |---|---|---|---|---|
 | `/weather` | `mcp-weather` | 127.0.0.1:9102 | `weather_forecast`, `weather_alerts`, `geocode` | Open-Meteo forecast + geocoding (no key, CC BY 4.0), US NWS `api.weather.gov` alerts |
