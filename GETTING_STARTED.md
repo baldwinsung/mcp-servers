@@ -6,9 +6,12 @@ You can use the hosted copies right away, or build and run your own.
 
 ## 1. Use the hosted servers (no install)
 
-The servers are live at `https://mcp.baldwinsung.com`. You get 50 free tool
-calls per IP, shared across all its servers. After that, request a free
-personal token at [mcp.baldwinsung.com](https://mcp.baldwinsung.com).
+The servers are live at `https://mcp.baldwinsung.com`. You get **50 free tool
+calls per IP address**, shared across all three servers. For more, request a
+free personal token at
+[mcp.baldwinsung.com/request](https://mcp.baldwinsung.com/request). Once it's
+approved, the token is shown on your request's status page and emailed to
+you. Keep the email: the token can't be shown again.
 
 ### Claude Code
 
@@ -21,7 +24,9 @@ claude mcp add --transport http ixstatus    https://mcp.baldwinsung.com/ixstatus
 Then ask things like *"What's the weather in Portland, OR this weekend?"*,
 *"Is Outlook down?"* or *"Is NYIIX having problems?"*.
 
-With a token, send it as a header:
+### Using a token
+
+In Claude Code, send it as a header:
 
 ```bash
 claude mcp add --transport http weather https://mcp.baldwinsung.com/weather \
@@ -91,7 +96,7 @@ Stop them with `kill %1 %2 %3`, or `pkill -f bin/mcp-`.
 
 | Variable | Meaning |
 |---|---|
-| `MCP_LISTEN_ADDR` | Address to listen on. Defaults: weather `127.0.0.1:9102`, cloudstatus `:9103`, ixstatus `:9104` |
+| `MCP_LISTEN_ADDR` | Address to listen on. Defaults: weather `127.0.0.1:9102`, cloudstatus `127.0.0.1:9103`, ixstatus `127.0.0.1:9104` |
 | `MCP_PUBLIC=1` | Blocks requests to private and reserved IP addresses. Use it on anything reachable from the internet. It also ignores `HTTPS_PROXY`, so leave it unset if your machine can only reach the internet through a proxy |
 | `PEERINGDB_API_KEY` | Optional, for ixstatus. PeeringDB allows anonymous clients about one large query an hour; a key from a free [PeeringDB](https://www.peeringdb.com) account lifts that |
 
@@ -158,7 +163,9 @@ curl -s http://127.0.0.1:9103/ -H 'Content-Type: application/json' \
 | `connection refused` | The server isn't running, or is on another port. Check `MCP_LISTEN_ADDR` and the `curl .../healthz` output |
 | Every upstream call fails with a dial error | You're behind a proxy with `MCP_PUBLIC=1` set. Unset it for local use |
 | ixstatus says PeeringDB is rate-limiting | Wait an hour, or set `PEERINGDB_API_KEY` |
-| Hosted server says the free calls are used up | Request a free token at [mcp.baldwinsung.com](https://mcp.baldwinsung.com) |
+| Hosted server says the free calls are used up | Request a free token at [mcp.baldwinsung.com/request](https://mcp.baldwinsung.com/request) |
+| Lost your token | It can't be recovered. Look for the approval email, or request a new one |
 | `go: go.mod requires go >= 1.26` | Install Go 1.26+, or run with `GOTOOLCHAIN=go1.26.11` |
 
-See [README.md](README.md) for the data sources and how each server works.
+See [README.md](README.md) for how the servers work and
+[SOURCES.md](SOURCES.md) for every data source.
